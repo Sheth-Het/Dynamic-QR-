@@ -5,21 +5,30 @@
     <title>Redirecting...</title>
 </head>
 <body>
+
 <script>
-// QR ID → Target URL mapping
+// LIST OF QR IDs AND WHERE THEY SHOULD GO
+// Add as many as you want
 const redirectList = {
+    "Promo 1": "https://www.bing.com/search?qs=LS&pq=Jetwing+Yala&sk=CSYN1&sc=16-12&pglt=299&q=jetwing+yala&cvid=60486177e60a4528876ca88a8534ea17&gs_lcrp=EgRlZGdlKgYIABAAGEAyBggAEAAYQDIGCAEQABhAMgYIAhAAGEAyBggDEAAYQDIGCAQQABhAMgYIBRAAGEAyBggGEAAYQDIGCAcQABhAMgYICBAAGEDSAQgzMjUyajBqMagCALACAA",
     "promo1": "https://google.com",
     "promo2": "https://youtube.com"
 };
 
+// Get the ID from the URL
 const url = new URLSearchParams(window.location.search);
-const id = url.get("id");
+let id = url.get("id");
 
+// decode it (important!!)
+id = decodeURIComponent(id);
+
+// Check if ID exists
 if (id && redirectList[id]) {
     window.location.href = redirectList[id];
 } else {
     document.body.innerHTML = "<h2>QR ID not found.</h2>";
 }
 </script>
+
 </body>
 </html>
