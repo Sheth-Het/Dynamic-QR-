@@ -23,25 +23,21 @@ function makeQR() {
         return;
     }
 
-    // This fixes your problem — it makes "Promo 1" safe in URLs
+    // encode ID for safety
     let encodedID = encodeURIComponent(id);
 
-    // This is what the QR will point to
-    let finalURL = window.location.origin + "/redirect.html?id=" + encodedID;
+    // IMPORTANT: Use your repository name here
+    let finalURL = window.location.origin + "/Dynamic-QR-/redirect.html?id=" + encodedID;
 
-    // Generate the QR image
-    let qr = new QRious({
-        value: finalURL,
-        size: 250
-    });
+    // generate QR code
+    let qr = new QRious({ value: finalURL, size: 250 });
 
-    // Show the QR code on the page
+    // show QR code
     document.getElementById("qr").innerHTML =
         `<h3>Your QR Code:</h3>
         <img src="${qr.toDataURL()}">
         <p>Points to:<br><code>${finalURL}</code></p>`;
 }
 </script>
-
 </body>
 </html>
