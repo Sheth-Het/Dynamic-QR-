@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic QR Code Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+</head>
+<body>
+<h2>Dynamic QR Code Generator</h2>
+
+<label>QR ID:</label><br>
+<input id="qrid" placeholder="example: promo1"><br>
+<button onclick="makeQR()">Generate QR Code</button>
+
+<div id="qr"></div>
+
+<script>
+function makeQR() {
+    let id = document.getElementById("qrid").value.trim();
+    if (!id) { alert("Enter a QR ID!"); return; }
+
+    let finalURL = window.location.origin + "/redirect.html?id=" + id;
+
+    let qr = new QRious({ value: finalURL, size: 250 });
+
+    document.getElementById("qr").innerHTML =
+        `<h3>QR Code:</h3>
+         <img src="${qr.toDataURL()}">
+         <p>Points to: <code>${finalURL}</code></p>`;
+}
+</script>
+</body>
+</html>
