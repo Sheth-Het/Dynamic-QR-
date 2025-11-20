@@ -16,6 +16,13 @@
 <div id="qr"></div>
 
 <script>
+// Map QR IDs to friendly display names
+const qrNames = {
+    "promo1": "Discount Voucher",
+    "promo2": "Special Offer",
+    "Promo 1": "Bing Search Example"
+};
+
 function makeQR() {
     let id = document.getElementById("qrid").value.trim();
     if (!id) {
@@ -23,20 +30,18 @@ function makeQR() {
         return;
     }
 
-    // encode ID for safety
     let encodedID = encodeURIComponent(id);
-
-    // IMPORTANT: Use your repository name here
     let finalURL = window.location.origin + "/Dynamic-QR-/redirect.html?id=" + encodedID;
 
-    // generate QR code
+    // Generate QR code
     let qr = new QRious({ value: finalURL, size: 250 });
 
-    // show QR code
+    // Display QR code and friendly name
+    let displayName = qrNames[id] || finalURL; // use friendly name if exists
     document.getElementById("qr").innerHTML =
         `<h3>Your QR Code:</h3>
         <img src="${qr.toDataURL()}">
-        <p>Points to:<br><code>${finalURL}</code></p>`;
+        <p>Points to:<br><strong>${displayName}</strong></p>`;
 }
 </script>
 </body>
