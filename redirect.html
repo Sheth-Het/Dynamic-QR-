@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+</head>
+<body>
+<script>
+// QR ID → Target URL mapping
+const redirectList = {
+    "promo1": "https://google.com",
+    "promo2": "https://youtube.com"
+};
+
+const url = new URLSearchParams(window.location.search);
+const id = url.get("id");
+
+if (id && redirectList[id]) {
+    window.location.href = redirectList[id];
+} else {
+    document.body.innerHTML = "<h2>QR ID not found.</h2>";
+}
+</script>
+</body>
+</html>
