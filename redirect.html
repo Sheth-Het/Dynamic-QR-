@@ -7,19 +7,16 @@
 <body>
 
 <script>
-// *** THIS MUST MATCH EXACTLY WHAT YOUR QR ID IS ***
+// List of QR IDs and the URLs they redirect to
 const redirectList = {
     "promo1": "https://google.com",
-    "Promo 1": "https://www.bing.com/search?qs=LS&pq=Jetwing+Yala&sk=CSYN1&sc=16-12&pglt=299&q=jetwing+yala&cvid=60486177e60a4528876ca88a8534ea17&gs_lcrp=EgRlZGdlKgYIABAAGEAyBggAEAAYQDIGCAEQABhAMgYIAhAAGEAyBggDEAAYQDIGCAQQABhAMgYIBRAAGEAyBggGEAAYQDIGCAcQABhAMgYICBAAGEDSAQgzMjUyajBqMagCALACAA"
 };
 
 // get ID from URL
 let id = new URLSearchParams(window.location.search).get("id");
-
-// decode
 if (id) id = decodeURIComponent(id);
 
-// check
+// check if ID exists in the list
 if (id && redirectList[id]) {
     window.location.href = redirectList[id];
 } else {
