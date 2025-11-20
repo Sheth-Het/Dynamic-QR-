@@ -7,16 +7,18 @@
 <body>
 
 <script>
-// List of QR IDs and the URLs they redirect to
+// Map QR IDs to redirect URLs
 const redirectList = {
-    "promo1": "https://docs.google.com/forms/d/e/1FAIpQLSfIhqignG_Zoomy-qoWQTxfD-8LZ3Y10Ndd8_1g1kLcibBLqw/viewform?usp=header",
+    "promo1": "https://google.com",
+    "promo2": "https://www.youtube.com",
+    "Promo 1": "https://www.bing.com/search?q=Jetwing+Yala"
 };
 
-// get ID from URL
+// Get the ID from URL
 let id = new URLSearchParams(window.location.search).get("id");
 if (id) id = decodeURIComponent(id);
 
-// check if ID exists in the list
+// Redirect if ID exists
 if (id && redirectList[id]) {
     window.location.href = redirectList[id];
 } else {
